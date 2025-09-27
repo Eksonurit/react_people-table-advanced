@@ -26,8 +26,9 @@ export const PeoplePage = () => {
       setPeople(peopleFetched);
       setErrorMessage(null);
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
       setErrorMessage('Something went wrong');
-      throw error;
     } finally {
       setIsLoading(false);
     }
@@ -93,7 +94,26 @@ export const PeoplePage = () => {
   }
 
   if (finalPeople.length === 0) {
-    return <p>There are no people matching the current search criteria</p>;
+    return (
+      <div className="container">
+        <h1 className="title">People Page</h1>
+        <div className="block">
+          <div className="columns is-desktop is-flex-direction-row-reverse">
+            <div className="column is-7-tablet is-narrow-desktop">
+              <PeopleFilters />
+            </div>
+            <div className="column">
+              <div className="box table-container">
+                <p data-cy="peopleLoadingError" className="has-text-danger">
+                  {errorMessage}
+                </p>
+                <p>There are no people matching the current search criteria</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (

@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { Person } from '../../types';
 import cn from 'classnames';
 import { PersonLink } from '../PersonLink/PersonLink';
@@ -10,6 +10,7 @@ interface Props {
 export const PersonItem: React.FC<Props> = ({ person }) => {
   const { personSlug } = useParams();
   const selectedPerson = personSlug ?? null;
+  const location = useLocation();
 
   return (
     <tr
@@ -20,7 +21,9 @@ export const PersonItem: React.FC<Props> = ({ person }) => {
     >
       <td>
         {person.slug === selectedPerson ? (
-          <Link to="/people">{person.name}</Link>
+          <Link to={{ pathname: '/people', search: location.search }}>
+            {person.name}
+          </Link>
         ) : (
           <PersonLink name={person.name} slug={person.slug} sex={person.sex} />
         )}

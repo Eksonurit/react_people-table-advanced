@@ -30,7 +30,7 @@ export const App = () => {
                 'has-background-grey-lighter':
                   location.pathname.startsWith('/people'),
               })}
-              to={{pathname: '/people', search: location.search}}
+              to={{ pathname: '/people', search: location.search }}
             >
               People
             </NavLink>

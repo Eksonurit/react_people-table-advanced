@@ -48,10 +48,7 @@ export const PeopleFilters = () => {
 
   const handleClearCenturyFilter = () => {
     const params = new URLSearchParams(searchParams);
-
     params.delete('centuries');
-    params.delete('query');
-    params.delete('sex');
     setSearchParams(params);
   };
 
@@ -59,6 +56,9 @@ export const PeopleFilters = () => {
     const params = new URLSearchParams(searchParams);
 
     params.delete('centuries');
+    params.delete('query');
+    params.delete('sex');
+    setSearchParams(params);
   };
 
   return (
@@ -199,8 +199,11 @@ export const PeopleFilters = () => {
             <Link
               data-cy="centuryALL"
               className="button is-success is-outlined"
-              to="/people"
-              onClick={() => handleClearCenturyFilter()}
+              to="#"
+              onClick={(e) => {
+                e.preventDefault();
+                handleClearCenturyFilter();
+              }}
             >
               All
             </Link>

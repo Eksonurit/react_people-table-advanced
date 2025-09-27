@@ -42,8 +42,8 @@ export const PeoplePage = () => {
       const century = Math.ceil(person.born / 100);
       const matchesQuery =
         person.name.toLowerCase().includes(query) ||
-        person.motherName?.toLowerCase().includes(query) ||
-        person.fatherName?.toLowerCase().includes(query);
+        (person.motherName ?? '').toLowerCase().includes(query) ||
+        (person.fatherName ?? '').toLowerCase().includes(query);
       const matchesSex = sexFilter === '' || person.sex === sexFilter;
       const matchesCentury =
         centuries.length === 0 || centuries.includes(century.toString());
